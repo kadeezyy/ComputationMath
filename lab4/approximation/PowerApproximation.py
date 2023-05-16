@@ -4,7 +4,7 @@ from approximation.Approximation import Approximation
 
 
 class PowerApproximation(Approximation):
-    function_type = "Степенная зависимость"
+    function_type = "Показательная зависимость"
 
     def find_an_approximation(self, function_table: dict) -> Function:
         try:
@@ -14,11 +14,13 @@ class PowerApproximation(Approximation):
             SLNXY = sum(log(x) * log(y) for x, y in function_table.items())
             n = len(function_table)
         except ValueError:
+            print("Невозможно посчитать показательную зависимость")
             return None
 
         try:
             b, a = self.solve_matrix22([[n, SLNX], [SLNX, SLNXX]], [SLNY, SLNXY])
             if a is None:
+                print("Невозможно посчитать показательную зависимость")
                 return None
             a = exp(a)
             fun = lambda x: a * (x ** b)
@@ -28,4 +30,5 @@ class PowerApproximation(Approximation):
             self.print_approximation_table(function_table, f, self.function_type)
             return f
         except TypeError:
+            print("Невозможно посчитать показательную зависимость")
             return None

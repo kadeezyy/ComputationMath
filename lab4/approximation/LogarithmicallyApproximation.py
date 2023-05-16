@@ -14,11 +14,13 @@ class LogarithmicallyApproximation(Approximation):
             SYLNX = sum(log(x) * y for x, y in function_table.items())
             n = len(function_table)
         except ValueError:
+            print("Невозможно посчитать логарифмическую зависимость")
             return None
 
         try:
             a, b = self.solve_matrix22([[n, SLNX], [SLNX, SLNXX]], [SY, SYLNX])
             if a is None:
+                print("Невозможно посчитать логарифмическую зависимость")
                 return None
             fun = lambda x: a * log(x) + b
             s = sum((fun(x) - function_table[x]) ** 2 for x in function_table.keys())
@@ -27,4 +29,5 @@ class LogarithmicallyApproximation(Approximation):
             self.print_approximation_table(function_table, f, self.function_type)
             return f
         except TypeError:
+            print("Невозможно посчитать логарифмическую зависимость")
             return None

@@ -3,25 +3,25 @@ def read_function_table() -> {float: float}:
     while True:
         # filename = input("Введите имя файла для загрузки исходных данных "
         #                  "или пустую строку, чтобы ввести вручную: ")
-        filename = "input.txt"
+        filename = "logarithm.txt"
 
         if filename == '':
             while True:
                 line = input()
                 if line == '':
-                    if len(function_table) < 12:
-                        print('(!) Необходимо не менее 12 точек')
+                    if len(function_table) < 8:
+                        print('(!) Необходимо не менее 8 точек')
                         continue
                     else:
                         break
                 try:
                     if len(line.split()) != 2:
-                        print('(!) Нужно ввсести два числа, через пробел')
+                        print(' Нужно ввести два числа, через пробел')
                         continue
                     x, y = map(float, line.split())
                     function_table[x] = y
                 except ValueError:
-                    print('(!) Вы ввели не число')
+                    print('Вы ввели не число')
             break
         else:
             try:
@@ -34,8 +34,8 @@ def read_function_table() -> {float: float}:
                         function_table[x] = y
                     except ValueError:
                         continue
-                if len(function_table) < 12:
-                    print('(!) В файле менее 12 корректных точек')
+                if len(function_table) < 6:
+                    print('(!) В файле менее 8 корректных точек')
                     continue
                 break
             except FileNotFoundError:

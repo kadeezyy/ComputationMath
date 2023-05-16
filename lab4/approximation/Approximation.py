@@ -27,6 +27,11 @@ class Approximation:
         return (delta1 / delta, delta2 / delta, delta3 / delta) if delta != 0 else (None, None, None)
 
     @staticmethod
+    def solve_matrix44(a, b):
+        a, b, c, d = np.linalg.solve(a, b)
+        return (a, b, c, d)
+
+    @staticmethod
     def print_approximation_table(function_table: dict,
                                   f: Function, function_type: str, decimals=3):
         x = np.around(list(function_table.keys()), decimals)
@@ -41,4 +46,3 @@ class Approximation:
         approximation_table.add_row([f.text, *approximated_y])
         approximation_table.add_row(["E", *(round(approximated_y[i] - y[i], decimals) for i in range(len(y)))])
         logging.info(approximation_table)
-

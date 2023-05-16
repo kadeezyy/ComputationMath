@@ -9,12 +9,14 @@ from approximation.LinearApproximation import LinearApproximation
 from approximation.LogarithmicallyApproximation import LogarithmicallyApproximation
 from approximation.PowerApproximation import PowerApproximation
 from approximation.SquareApproximation import SquareApproximation
+from approximation.CubicApproximation import CubicApproximation
 
 targets = logging.StreamHandler(sys.stdout), logging.FileHandler('output.txt', mode='w', encoding='utf-8')
 logging.basicConfig(format='%(message)s', level=logging.INFO, handlers=targets)
 
 approximations = [LinearApproximation(),
                   SquareApproximation(),
+                  CubicApproximation(),
                   ExponentialApproximation(),
                   LogarithmicallyApproximation(),
                   PowerApproximation()]
@@ -26,6 +28,7 @@ while True:
         f = a.find_an_approximation(function_table)
         if f is not None:
             functions.append(f)
+
 
     functions.sort(key=lambda x: x.root_mean_square_deviation)
     results_table = PrettyTable()

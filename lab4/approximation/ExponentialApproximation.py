@@ -14,6 +14,7 @@ class ExponentialApproximation(Approximation):
             SXLNY = sum(x * log(y) for x, y in function_table.items())
             n = len(function_table)
         except ValueError:
+            print("Невозможно посчитать экспоненциальную зависимость")
             return None
 
         try:
@@ -27,4 +28,5 @@ class ExponentialApproximation(Approximation):
             self.print_approximation_table(function_table, f, self.function_type)
             return f
         except TypeError:
+            print("Невозможно посчитать экспоненциальную зависимость")
             return None
