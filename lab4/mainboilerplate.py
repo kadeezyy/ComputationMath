@@ -3,7 +3,7 @@ def read_function_table() -> {float: float}:
     while True:
         # filename = input("Введите имя файла для загрузки исходных данных "
         #                  "или пустую строку, чтобы ввести вручную: ")
-        filename = "logarithm.txt"
+        filename = "linear.txt"
 
         if filename == '':
             while True:
