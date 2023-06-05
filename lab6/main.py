@@ -30,12 +30,12 @@ if __name__ == '__main__':
         try:
             print(f'\n{name}: ')
             xValues, yValues = solve(x0, y0, h, x_last, f, solution, eps, log=True)
-
-            X2h, Y2h = solve(x0, y0, h / 2, x_last, f, solution, eps)
-            R = []
-            for i in range(len(yValues) // 2):
-                R.append((yValues[i] - Y2h[i * 2]) / (2 ** 4 - 1))
-            print(f'Оценки точности по правилу Рунге:\n{R}')
+            if (name != "Метод Эйлера"):
+                X2h, Y2h = solve(x0, y0, h / 2, x_last, f, solution, eps)
+                R = []
+                for i in range(len(yValues) // 2):
+                    R.append(abs((yValues[i] - Y2h[i * 2]) / (2 ** 4 - 1)))
+            # print(f'Оценки точности по правилу Рунге для h и до h/{len(R)} соответственно:\n{R}')
             # while (max(R) > eps):
             #     h *= 0.5
             #     xValues, yValues = solve(x0, y0, h, x_last, f, solution, eps, log=True)

@@ -93,17 +93,24 @@ def euler(x0, y0, h, x_last, f, solution, eps=None, log=False):
 
         xValues.append(x_next)
         yValues.append(y_next)
+    calculation_table.append([len(xValues), x_next, y_next, f(x, y), solution(x, y0)])
+    
+    field_names = ["i", "x", "y", "F(x,y)", "Точное решение"]
+    print(tabulate(calculation_table, field_names, tablefmt='grid', floatfmt='2.4f'))
+
+    # Вычисление погрешности по правилу Рунге
     if eps is not None:
         h_half = h / 2
         x2h, Y2h = euler(x0, y0, h_half, x_last, f, solution)
-        R = abs((yValues[-1] - Y2h[-1]) / (2 ** 4 - 1))
+        R = abs((yValues[-1] - Y2h[-1]) / (2 ** 1 - 1))
 
         if R > eps:
-            return euler(x0, y0, h_half, x_last, f, solution, eps)
-
-    if log:
-        field_names = ["i", "x", "y", "F(x,y)", "Точное решение"]
-        print(tabulate(calculation_table, field_names, tablefmt='grid', floatfmt='2.4f'))
+            # Уменьшаем шаг и повторяем вычисления
+            return euler(x0, y0, h_half, x_last, f, solution, eps, log)
+        else:
+            print(f"По правилу Рунге точность: {round(yValues[-1], 5)} - {round(Y2h[-1], 5)} = {round(R, 5)}")
+            print(h_half)
+    
     return xValues, yValues
 
 
