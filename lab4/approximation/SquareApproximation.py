@@ -15,7 +15,14 @@ class SquareApproximation(Approximation):
         SXY = sum(x * y for x, y in function_table.items())
         SXXY = sum(x * x * y for x, y in function_table.items())
         n = len(function_table)
-
+        # print()
+        # print(SX)
+        # print(SXX)
+        # print(SXXX)
+        # print(SXXXX)
+        # print(SY)
+        # print(SXY)
+        # print(SXXY)
         a, b, c = self.solve_matrix33([[n, SX, SXX], [SX, SXX, SXXX], [SXX, SXXX, SXXXX]], [SY, SXY, SXXY])
         if a is None:
             return None

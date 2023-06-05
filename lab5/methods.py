@@ -52,12 +52,8 @@ def newton(x: List[float], y: List[float], x0: float):
                 result += dy[j][i] * calc_t_stuff(i, t)
     else:
         t = (x0 - x[j]) / h
-        # print(j)
         for i in range(j, -1, -1):
-            # print(f"{dy[i][j - i]}")
             result += dy[i][j - i] * calc_t_stuff(j - i, t, back=True)
-            # print(i)
-            # print(dy[i][j - i])
     return result
 
 

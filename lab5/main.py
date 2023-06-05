@@ -42,6 +42,7 @@ if __name__ == '__main__':
 
         print('Результаты:')
         x, y = dataset
+
         for solve, name in methods:
             try:
                 result = solve(x, y, x0)

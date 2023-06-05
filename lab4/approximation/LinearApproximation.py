@@ -13,6 +13,10 @@ class LinearApproximation(Approximation):
         SY = sum(function_table.values())
         SXY = sum(x * y for x, y in function_table.items())
         n = len(function_table)
+        # print(SX)
+        # print(SXX)
+        # print(SY)
+        # print(SXY)
 
         a, b = self.solve_matrix22([[n, SX], [SX, SXX]], [SY, SXY])
         if a is None:
